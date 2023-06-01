@@ -1,0 +1,25 @@
+Code Explaination---------------------------------------------------------------------------------------------------
+
+This Arduino code is designed to use ultrasonic sensors to detect the presence of objects in three different slots. The sensors are connected to pins 6, 7, and 8 on the Arduino board, and the LEDs that indicate the status of each slot are connected to pins 9, 10, and 13.
+
+The readUltrasonicDistance function is used to calculate the distance between the ultrasonic sensor and an object. It sends a short pulse to the sensor, then measures the amount of time it takes for the pulse to bounce back. This time is converted to distance using the speed of sound.
+
+In the setup function, the pins for the sensors and LEDs are initialized as either input or output pins.
+
+In the loop function, the distances for each sensor are calculated using the readUltrasonicDistance function. If the distance is less than or equal to 2cm or greater than or equal to 320cm, the corresponding LED is turned on and a boolean variable is set to false. Otherwise, the LED is turned off and the boolean variable is set to true.
+
+Finally, a series of if statements are used to determine which slots are empty or filled based on the boolean variables. The status of each slot is printed to the serial monitor. The loop function then waits for 500ms before repeating.
+
+Pin Explanation----------------------------------------------------------------------------------------------------
+
+In this Arduino code, the ultrasonic sensors and LEDs are connected to specific pins on the Arduino board.
+
+The trigPin1, trigPin2, and trigPin3 variables are used to specify the pins that are connected to the trigger pins of the ultrasonic sensors. These pins are responsible for sending out a short pulse to the sensor.
+
+The echoPin1, echoPin2, and echoPin3 variables are used to specify the pins that are connected to the echo pins of the ultrasonic sensors. These pins receive the pulse that was sent out by the trigger pin and measure the time it takes for the pulse to bounce back.
+
+The led1, led2, and led3 variables are used to specify the pins that are connected to the LEDs. These pins are responsible for indicating the status of each slot.
+
+In the setup function, these pins are initialized as either input or output pins using the pinMode function. The trigger pins are set as output pins, while the echo pins and LED pins are set as input pins.
+
+In the loop function, the readUltrasonicDistance function is called for each sensor using the corresponding trigger and echo pins. The distance calculation is based on the speed of sound, which is a constant value. The distance calculation is then used to determine whether or not an object is present in each slot, and the corresponding LED pin is turned on or off.
