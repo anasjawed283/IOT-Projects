@@ -1,0 +1,14 @@
+Code Explaination-------------------------------------------------------------
+
+This is a program for a temperature and gas sensor. The program starts by defining two variables, V_GasSen and V_TempSens, both set to 0. The setup function initializes the pins used by the sensor inputs and outputs. The loop function is where the actual sensing takes place. 
+
+First, the program reads the analog input from pin A0, which is connected to the gas sensor. If the value is greater than or equal to 250, indicating the presence of gas, a tone is played on pin 7 and pin 9 is set to HIGH. 
+
+Next, the program reads the analog input from pin A1, which is connected to the temperature sensor. The value is converted to a temperature reading using a formula that takes into account the calibration of the sensor. If the temperature reading is greater than or equal to 70 degrees Celsius, a tone is played on pin 7 and pin 12 is set to HIGH.
+
+The delay function is used to pause the program for a short period of time before looping again. 
+
+Technical terms used in this program include analogRead, tone, digitalWrite, pinMode, and delay. AnalogRead reads the voltage on an analog input pin and converts it to a digital value. Tone generates a square wave of a specific frequency on a digital output pin. DigitalWrite sets a digital output pin to either HIGH or LOW. PinMode sets the mode of a pin as either INPUT or OUTPUT. Delay pauses the program for a specified amount of time in milliseconds.
+
+
+Pin A0 is used as an input for the gas sensor, and pin A1 is used as an input for the temperature sensor. The output pins used in the program are pin 7, which is used to generate a tone, and pins 4, 9, and 12, which are set to HIGH when certain conditions are met.
