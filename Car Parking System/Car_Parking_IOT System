@@ -1,0 +1,106 @@
+#define trigPin1 6
+#define trigPin2 7
+#define trigPin3 8
+#define echoPin1 6
+#define echoPin2 7
+#define echoPin3 8
+#define led1 9
+#define led2 10
+#define led3 13
+bool bool1=false;
+bool bool2=false;
+bool bool3=false;
+long readUltrasonicDistance(int triggerPin, int echoPin){
+    pinMode(triggerPin, OUTPUT);  
+    digitalWrite(triggerPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(triggerPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(triggerPin, LOW);
+    pinMode(echoPin, INPUT);
+    return pulseIn(echoPin, HIGH);   }
+void setup() {
+  //Serial.begin (9600);
+  pinMode(trigPin1, OUTPUT);
+  pinMode(trigPin2, OUTPUT);
+  pinMode(trigPin3, OUTPUT);
+  pinMode(echoPin1, INPUT);
+  pinMode(echoPin2, INPUT);
+  pinMode(echoPin3, INPUT);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  float distance1;
+  float distance2;
+  float distance3;
+   distance1 = (readUltrasonicDistance(6, 6) * 0.034)/2;
+   //Serial.println(distance1);
+   if (distance1 >=320|| distance1 <= 2){
+    digitalWrite(led1, HIGH);
+     bool1=false;   }
+  else {
+    digitalWrite(led1, LOW);
+    bool1=true;
+  }
+    distance2 = (readUltrasonicDistance(7, 7) * 0.034)/2;
+   if (distance2 >=320 || distance2 <= 2){
+    digitalWrite(led2, HIGH);
+     bool2=false;
+  }
+  else {
+    digitalWrite(led2, LOW);
+    bool2=true;
+  }
+    distance3 = (readUltrasonicDistance(8, 8) * 0.034)/2;
+   if (distance3 >=320 || distance3 <= 2){
+    digitalWrite(led3, HIGH);
+     bool3=false;
+  }
+  else {
+    digitalWrite(led3, LOW);
+    bool3=true;
+  }
+ if(!bool1&&!bool2&&!bool3)
+  {
+    Serial.println("All slots empty");
+  }
+  else if(bool1&&!bool2&&!bool3)
+  {
+  Serial.println("1 Slot filled");
+  Serial.println("Slot 2 3 empty");
+  }
+  else if(!bool1&&bool2&&!bool3)
+  {
+    Serial.println("1 Slot filled");
+    Serial.println("Slot 1 3 empty");
+  }
+  else if(bool1&&bool2&&!bool3)
+  {
+    Serial.println("2 Slot filled");
+    Serial.println("Slot 3 empty");
+  }
+  else if(!bool1&&!bool2&&bool3)
+  {
+    Serial.println("1 Slot filled");
+    Serial.println("Slot 1 2 empty");
+  }
+  else if(bool1&&!bool2&&bool3)
+  {
+    Serial.println("2 Slot filled");
+    Serial.println("Slot 2 empty");
+  }
+  else if(!bool1&&bool2&&bool3)
+  {     
+    Serial.println("2 Slot filled");
+   
+    Serial.println("Slot 1 empty");
+  }
+  else
+  {
+        Serial.println("All Slots filled");
+  }
+  delay(500);
+}
