@@ -1,0 +1,13 @@
+Code Explaination-----------------------------------------------
+
+This code is written in C++ programming language and is for Arduino microcontroller board. 
+
+The code starts by defining the LDR pin as A5, which is an analog input pin on the Arduino board. The LDR value is stored in the variable 'ldr_value'. 
+
+The code then defines a variable 'light' as pin 3, which is a digital output pin on the Arduino board. 
+
+In the setup function, the 'light' pin is set as an output, and the 'ldr_pin' is set as an input. 
+
+In the loop function, the LDR value is read using the 'analogRead' function, and stored in the 'ldr_value' variable. If the LDR value is greater than 512, meaning it is bright, then the 'light' pin is set to LOW (0), turning off the LED. Otherwise, if the LDR value is less than or equal to 512, meaning it is dark, then the 'light' pin is set to HIGH (1), turning on the LED. 
+
+To connect the LDR to the Arduino board, connect one leg of the LDR to A5 pin and the other leg of the LDR to GND. To connect the LED to the Arduino board, connect the longer leg of the LED to pin 3 and connect the shorter leg of the LED to GND.
