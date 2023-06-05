@@ -1,0 +1,70 @@
+Code Understanding---------------------------------------------------------
+
+Let's go through the code step by step to understand its functionality:
+
+Libraries:
+The code starts by including two libraries:
+
+Servo.h: This library allows control of servo motors.
+LiquidCrystal.h: This library enables communication with LCD displays.
+Pin Definitions:
+
+The trigger and echo pins for five ultrasonic distance sensors are defined using constants: t1, t2, t3, t4, and t5.
+Pin 7 is assigned to t4 and Pin 13 is assigned to t5.
+Pin 12, 11, 5, 4, 3, and 2 are assigned for the LCD display.
+Global Variables:
+
+distanceThreshold is set to 100, which represents the distance threshold for parking detection.
+parkingAvailable is set to 3, indicating the initial number of available parking slots.
+barrierState is set to 0, representing the initial state of the barrier.
+Setup Function:
+
+lcd.begin(16,2) initializes the LCD display with 16 columns and 2 rows.
+Serial.begin(9600) starts the serial communication at a baud rate of 9600.
+myservo.attach(6) attaches the servo motor to pin 6.
+myservo.write(0) positions the servo motor at 0 degrees.
+readDistance Function:
+
+This function measures the distance using an ultrasonic sensor.
+It takes the trigger pin and echo pin as parameters.
+It sends a trigger pulse, measures the duration of the echo pulse, and returns the calculated distance.
+Loop Function:
+
+The main execution of the program occurs in this function, which runs repeatedly.
+The distances from all five ultrasonic sensors (d1, d2, d3, d4, and d5) are calculated using the readDistance function and stored as floats.
+Serial Output:
+
+The distances (d1 to d5) are printed on the serial monitor using Serial.println.
+The distances are converted to strings and concatenated with appropriate labels.
+Parking Management Logic:
+
+The following logic is implemented to manage the parking slots and barrier state:
+
+if (barrierState == 0) {
+  // Barrier closed, checking for parking availability and incoming/outgoing vehicles
+  if (d4 < 100 && d5 >= 100 && parkingAvailable > 0) {
+    // Vehicle entering
+    parkingAvailable -= 1;
+    barrierState = -1;
+    myservo.write(90);
+  }
+  if (d4 >= 100 && d5 < 100 && parkingAvailable < 3) {
+    // Vehicle leaving
+    parkingAvailable += 1;
+    barrierState = 1;
+    myservo.write(90);
+  }
+} else if (barrierState == -1) {
+  // Barrier open, waiting for vehicle to clear
+  if (d4 >= 100 && d5 < 100) {
+    barrierState = -2;
+    myservo.write(0);
+  }
+} else if (barrierState == 1) {
+  // Barrier open, waiting for vehicle to clear
+  if (d5 >= 100 && d4 < 100) {
+    barrierState = 2;
+    myservo.write(0);
+  }
+} else if (barrierState == -2) {
+  // Barrier closed
