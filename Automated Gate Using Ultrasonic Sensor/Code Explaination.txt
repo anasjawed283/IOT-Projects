@@ -1,0 +1,37 @@
+Code Explaination---------------------------
+
+The first line of code includes the Servo library, which is required to control the servo motor responsible for opening and closing the gate.
+
+The next line declares an instance of the Servo class called servo1, which will be used to control the servo motor.
+
+The following lines define the pin numbers for the ultrasonic sensor. Pin 10 is assigned to trigpin, which is the trigger pin used to send out the ultrasonic pulse. Pin 11 is assigned to echopin, which is the echo pin used to receive the reflected pulse.
+
+Several variables are declared: distance to hold the calculated distance from the ultrasonic sensor, duration to store the time it takes for the ultrasonic pulse to travel, cm to store the calculated distance in centimeters.
+
+In the setup() function, the servo motor is attached to pin 9 using the servo1.attach(9) function. Additionally, the trigpin is configured as an output pin, and the echopin is configured as an input pin using the pinMode() function.
+
+The loop() function is where the main logic of the automated gate is implemented. It runs repeatedly after the setup() function.
+
+Inside the loop() function, the trigger pin (trigpin) is set to a LOW state to ensure a clean start.
+
+A small delay of 2 milliseconds is added using delay(2).
+
+The trigger pin (trigpin) is set to HIGH for 10 microseconds to send out the ultrasonic pulse.
+
+Immediately after sending the pulse, the trigger pin is set back to LOW.
+
+The pulseIn() function is used to measure the duration it takes for the echo pin (echopin) to go HIGH. This duration is then stored in the duration variable.
+
+The cm variable is calculated by dividing the duration by 58.82, as this formula is commonly used to convert the pulse duration to centimeters.
+
+The calculated distance in centimeters is assigned to the distance variable.
+
+The code then checks if the distance is less than 100 centimeters. If it is, it means an obstacle is detected within 100 centimeters of the ultrasonic sensor, and the gate should be opened.
+
+If the distance is less than 100 centimeters, the servo1.write(90) command is used to set the servo motor to a 90-degree position, which typically corresponds to an open gate position.
+
+If the distance is not less than 100 centimeters, indicating no obstacle is detected, the servo1.write(0) command is used to set the servo motor to a 0-degree position, which typically corresponds to a closed gate position.
+
+A small delay of 50 milliseconds is added using delay(50) to provide some time before the loop repeats.
+
+This code continuously checks the distance measured by the ultrasonic sensor and opens the gate when an obstacle is detected within 100 centimeters. Otherwise, it keeps the gate closed.
