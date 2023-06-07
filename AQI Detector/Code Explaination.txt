@@ -1,0 +1,87 @@
+Code Explaination-------------------------------------------
+
+1. Include Libraries:
+
+#include <LiquidCrystal.h>
+
+The code includes the "LiquidCrystal" library, which is required to interface with the LCD display.
+
+2. Initialize LCD and Define Pins:
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+This line initializes the LCD object, specifying the pins to which the LCD module is connected. In this case, the LCD is connected to Arduino pins 12, 11, 5, 4, 3, and 2.
+
+3. Declare Variables:
+
+int pin8 = 8;
+int analogPin = A0;
+int sensorValue = 0;
+
+Here, three variables are declared. pin8 represents the digital pin connected to a device or component that will be activated if the air quality is poor. analogPin represents the analog input pin to which the air quality sensor is connected. sensorValue is used to store the analog reading from the sensor.
+
+4. Setup Function:
+
+void setup() {
+  pinMode(analogPin, INPUT);
+  pinMode(pin8, OUTPUT);
+  lcd.begin(16, 2);
+  Serial.begin(9600);
+  lcd.display();
+}
+
+The setup() function is called once when the Arduino board is powered on or reset. In this function, the following actions are performed:
+
+pinMode(analogPin, INPUT); sets the analog input pin as an input.
+pinMode(pin8, OUTPUT); sets pin8 as an output pin.
+lcd.begin(16, 2); initializes the LCD module by specifying the number of columns and rows.
+Serial.begin(9600); initializes the serial communication at a baud rate of 9600 for printing debug information to the serial monitor.
+lcd.display(); turns on the LCD display.
+
+
+5. Loop Function:
+
+
+void loop() {
+  delay(100);
+  sensorValue = analogRead(analogPin);
+  Serial.print("Air Quality in PPM = ");
+  Serial.println(sensorValue);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Air Quality: ");
+  lcd.print(sensorValue);
+
+  if (sensorValue <= 500) {
+    Serial.print("Fresh Air ");
+    Serial.print("\r\n");
+    lcd.setCursor(0, 1);
+    lcd.print("Fresh Air");
+  }
+  else if (sensorValue >= 500 && sensorValue <= 650) {
+    Serial.print("Poor Air");
+    Serial.print("\r\n");
+    lcd.setCursor(0, 1);
+    lcd.print("Poor Air");
+  }
+  else if (sensorValue >= 650) {
+    Serial.print("POOR AQI");
+    Serial.print("\r\n");
+    lcd.setCursor(0, 1);
+    lcd.print("POOR AQI");
+  }
+
+  if (sensorValue > 650) {
+    digitalWrite(pin8, HIGH);
+  }
+  else {
+    digitalWrite(pin8, LOW);
+  }
+}
+
+
+The loop() function is continuously executed after the setup() function. Here's what happens inside the loop:
+
+delay(100); introduces a small delay of 100 milliseconds to stabilize the readings.
+sensorValue = analogRead(analogPin); reads the analog value from the
+
