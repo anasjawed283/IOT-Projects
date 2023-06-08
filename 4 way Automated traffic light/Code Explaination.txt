@@ -1,0 +1,14 @@
+Code Explaination-------------------------------------------------------------
+The code defines four arrays, Lane1, Lane2, Lane3, and Lane4, each containing three integers representing the pins for the red, yellow, and green lights of each lane.
+
+In the setup function, each pin is set to OUTPUT mode and then all lights are turned off by setting their corresponding pins to LOW.
+
+In the loop function, the traffic light sequence is executed. The first step is to turn on the green light for lane 1, lane 3, and lane 4, and the red light for lane 2. This is done by setting the corresponding pins to HIGH. The lights remain in this state for 7 seconds, as specified by the delay function.
+
+Next, the green light for lane 1 is turned off by setting its pin to LOW, and the yellow light for lane 1 is turned on by setting its pin to HIGH. Similarly, the yellow light for lane 3 is turned on, and both yellow lights remain on for 3 seconds.
+
+After the 3-second delay, the yellow lights are turned off and the red lights are turned on for lane 1 and lane 3. At the same time, the green light for lane 4 is turned on. This state lasts for 7 seconds.
+
+The next step is to turn on the green light for lane 3 and lane 4, and the red light for lane 1 and lane 2. This sequence is similar to the first step and lasts for 7 seconds.
+
+The remaining steps follow a similar pattern of turning on different lights for different lanes and delays between each change of state until the loop starts again with the first step.
