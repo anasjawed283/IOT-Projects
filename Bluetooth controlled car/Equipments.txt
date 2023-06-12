@@ -1,0 +1,19 @@
+1) Jumper Wires -Male to Male
+                -Male to Female
+                -Female to Female
+
+2)Motor Driver (L298) X1
+
+3)Micro motors X4
+
+4)Arduino UNO X1
+
+5)Li-Ion Battery 1000mAh X1
+
+6)Bluetooth Module (HC-05)
+
+7)LED X4
+
+8) Robot base 4 wheeled 
+
+https://www.flipkart.com/sunrobotics-diy-4-wheel-drive-robot-smart-car-chassis-kits/p/itmf5w2zfa5ydk5m?pid=ETYF5VZXD6QK3SDT&lid=LSTETYF5VZXD6QK3SDTGSJDJL&marketplace=FLIPKART&q=robot+car+bas4e&store=tng&srno=s_1_14&otracker=search&otracker1=search&fm=Search&iid=ab0903ef-0bad-4d33-bfff-82b23416ce8b.ETYF5VZXD6QK3SDT.SEARCH&ppt=sp&ppn=sp&ssid=l0j7yeam740000001686578701351&qH=691cb8dbeb3ffb61

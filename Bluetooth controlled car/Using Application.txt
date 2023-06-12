@@ -1,0 +1,7 @@
+This app will be used to control the car
+
+https://play.google.com/store/apps/details?id=braulio.calle.bluetoothRCcontroller&pli=1
+
+This application is designed to be used with a MODIFIED RC car. You have to replace the car's stock control circuit with a micro controller. This involves programming. The application will not work with a brand new, out of the box RC car. Please visit the website before you download the application.
+
+The application allows you to control a micro controller and Bluetooth fitted RC car with your smart phone. Visit this site https://sites.google.com/site/bluetoothrccar/ for the code and control circuit. The app lets you control the car with either virtual buttons or the phone's accelerometer. A slider bar allows you to control your car's velocity if the car's control circuit has this feature. There are also two buttons for front and back lights. A flashing light lets you know when the phone is connected to the car, and arrows light up letting you know the car's driving direction.

@@ -1,0 +1,25 @@
+The global variable t is declared to store the received serial input.
+
+In the setup() function:
+
+Pin modes are set for various digital pins used in the motor control: 13, 12, 11, 10, and 9.
+Pin 13 and Pin 9 are configured as OUTPUT for controlling motors and an LED, respectively.
+The Serial communication is initiated with a baud rate of 9600.
+In the loop() function:
+
+It checks if there is any serial data available.
+
+If data is available, it reads a character from the serial buffer and stores it in the variable t. Then, it prints the received character back to the Serial Monitor.
+
+The code then uses multiple if statements to check the value of t and performs corresponding actions:
+
+If t is 'F', it sets Pin 13 and Pin 11 to HIGH, which makes both the left and right motors rotate forward, moving the system forward.
+If t is 'B', it sets Pin 12 and Pin 10 to HIGH, which makes both the left and right motors rotate in the reverse direction, moving the system backward.
+If t is 'L', it sets Pin 11 to HIGH, making the left motor rotate forward while the right motor remains stationary, causing the system to turn right.
+If t is 'R', it sets Pin 13 to HIGH, making the right motor rotate forward while the left motor remains stationary, causing the system to turn left.
+If t is 'W', it sets Pin 9 to HIGH, turning the LED on.
+If t is 'w', it sets Pin 9 to LOW, turning the LED off.
+If t is 'S', it sets all motor control pins (13, 12, 11, and 10) to LOW, stopping the motors.
+A delay of 100 milliseconds is added at the end of the loop to control the rate at which the loop executes.
+
+In summary, the code listens for serial input and performs corresponding actions based on the received character. It can control the motors to move forward, backward, turn left, turn right, or stop. Additionally, it can turn an LED on or off based on the input.
