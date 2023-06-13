@@ -1,0 +1,35 @@
+This Arduino code is for a solar tracker, which is a system that adjusts the position of a solar panel to maximize its exposure to sunlight throughout the day. The code uses two servo motors to control the movement of the solar panel in the horizontal and vertical directions.
+
+Explaination 
+
+The code begins with the inclusion of the Servo library, which is required to control the servo motors.
+
+Two Servo objects, horizontal and vertical, are declared to control the horizontal and vertical servos, respectively.
+
+Several variables are defined to store the initial position and limits of the servo motors, as well as the connections to the LDR (Light Dependent Resistor) sensors.
+
+In the setup() function:
+
+The servos are attached to their respective pins on the Arduino board.
+The initial position of the servos is set to face the sun (180 degrees horizontal, 45 degrees vertical).
+There is a delay of 2.5 seconds to allow time for the servos to initialize.
+The loop() function contains the main logic of the solar tracker and is executed repeatedly.
+
+Four LDR sensors are read using the analogRead() function to measure the light intensity at different positions (top left, top right, bottom left, bottom right).
+
+The average values of the top, bottom, left, and right sensors are calculated to determine the position of the sunlight relative to the solar panel.
+
+The differences between the average values of the top and bottom sensors (dvert) and the left and right sensors (dhoriz) are calculated to determine the direction in which the solar panel needs to be adjusted.
+
+If the difference in the vertical direction (dvert) exceeds a certain tolerance (tol), the vertical servo is adjusted accordingly:
+
+If the average value of the top sensors is greater than the average value of the bottom sensors, the vertical servo is incremented.
+If the average value of the top sensors is less than the average value of the bottom sensors, the vertical servo is decremented.
+The limits of the vertical servo position (servovLimitHigh and servovLimitLow) are enforced.
+If the difference in the horizontal direction (dhoriz) exceeds a certain tolerance (tol), the horizontal servo is adjusted similarly to the vertical servo.
+
+If the average values of the left and right sensors are equal (avl = avr), there is a delay of 5 seconds. This delay is likely included to stabilize the servo movements and prevent unnecessary adjustments when the light conditions are relatively constant.
+
+Finally, there is a delay of dtime milliseconds before the next iteration of the loop.
+
+The code continuously reads the LDR sensors, calculates the differences in light intensity, and adjusts the servos accordingly to keep the solar panel oriented towards the brightest source of light, optimizing its energy capture.
