@@ -1,0 +1,25 @@
+const int sensor_pin = A1;: This line declares a constant integer variable sensor_pin and assigns the value A1 to it. A1 refers to the analog input pin on the Arduino board where the soil moisture sensor is connected.
+
+void setup(): This is the setup function, which runs once when the Arduino is powered on or reset. It is used for initializing variables, setting the baud rate for serial communication, and any other one-time setup tasks. In this case, it initializes the serial communication with a baud rate of 9600.
+
+Serial.begin(9600);: This line initiates the serial communication between the Arduino and the computer at a baud rate of 9600. It allows the Arduino to send data to and receive data from the computer via the serial port.
+
+void loop(): This is the main loop function that runs repeatedly after the setup function is executed. It contains the core functionality of the program.
+
+float moisture_percentage;: This line declares a floating-point variable moisture_percentage to store the calculated moisture percentage value.
+
+int sensor_analog;: This line declares an integer variable sensor_analog to store the raw analog reading from the soil moisture sensor.
+
+sensor_analog = analogRead(sensor_pin);: This line reads the analog value from the specified sensor_pin (A1) using the analogRead() function and stores it in the sensor_analog variable. The analogRead() function returns a value between 0 and 1023, representing the voltage level on the analog pin.
+
+moisture_percentage = ( 100 - ( (sensor_analog/1023.00) * 100 ) );: This line calculates the moisture percentage based on the raw analog reading. It divides the sensor_analog value by 1023.00 to normalize it to a value between 0 and 1. Then it multiplies by 100 to convert it to a percentage value. Finally, it subtracts the obtained percentage from 100 to get the moisture percentage.
+
+Serial.print("Moisture Percentage = ");: This line prints the text "Moisture Percentage = " to the serial monitor. The Serial.print() function is used to send data to the computer.
+
+Serial.print(moisture_percentage);: This line prints the calculated moisture percentage value to the serial monitor.
+
+Serial.print("%\n\n");: This line prints the percentage sign ("%") and two newline characters ("\n\n") to the serial monitor, creating additional spacing for readability.
+
+delay(1000);: This line introduces a delay of 1000 milliseconds (1 second) before the next iteration of the loop. It pauses the program for a specified duration to avoid continuous and rapid output to the serial monitor.
+
+The loop function repeats indefinitely, continuously measuring the soil moisture, calculating the moisture percentage, and printing the result to the serial monitor every second.
