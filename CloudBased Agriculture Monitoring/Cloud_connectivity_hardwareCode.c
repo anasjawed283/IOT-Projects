@@ -51,9 +51,6 @@ const int moistThreshold = 60;       // Water pump is activated ones soil moistu
 bool soil_isDry = false;
 String myStatus = "";
 
-//WiFi Credentials
-// const char* ssid = "Redmi Note 9S";   // your network SSID (name) 
-// const char* password = "yinkus4ever";   // your network password
 
 
 void setup() {
