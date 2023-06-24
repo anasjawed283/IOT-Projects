@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "author": "Person1",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 14.3, "left": -110.6, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled1", "top": 89.54, "left": 57.83, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "oled1:SCL", "esp:D22", "green", [ "v0" ] ],
+    [ "oled1:SDA", "esp:D21", "green", [ "v-19.2", "h-67", "v0.4" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v-40", "h-64.7", "v111.51" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-28.8", "h-67.05", "v105.6" ] ]
+  ]
+}
