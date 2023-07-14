@@ -1,0 +1,98 @@
+[
+    {
+        "id": "29609aca.d69f66",
+        "type": "tab",
+        "label": "USGS Earthquake Monitor"
+    },
+    {
+        "id": "a9ecfe6f.5613",
+        "type": "http request",
+        "z": "29609aca.d69f66",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.csv",
+        "x": 276,
+        "y": 54,
+        "wires": [
+            [
+                "86781b39.7987e8"
+            ]
+        ]
+    },
+    {
+        "id": "66f14749.990eb8",
+        "type": "debug",
+        "z": "29609aca.d69f66",
+        "name": "",
+        "active": true,
+        "complete": "false",
+        "x": 619.0000610351562,
+        "y": 265.9999694824219,
+        "wires": []
+    },
+    {
+        "id": "cc40789.f33bf88",
+        "type": "inject",
+        "z": "29609aca.d69f66",
+        "name": "",
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 92,
+        "y": 53,
+        "wires": [
+            [
+                "a9ecfe6f.5613"
+            ]
+        ]
+    },
+    {
+        "id": "3bb724f.fc448dc",
+        "type": "function",
+        "z": "29609aca.d69f66",
+        "name": "USGS Quake monitor Strip Disinteresting Data",
+        "func": "//node.warn(msg.payload);\n// \"time\", \"latitude\", \"longitude\", \"depth\", \"mag\", \"magType\", \"nst\", \"gap\", \"dmin\", \"rms\", \"net\", \"id\", \"updated\", \"place\", \"type\" \nvar out = {};\n\nif (msg.payload.depth) delete(msg.payload.depth);\nif (msg.payload.nst) delete(msg.payload.nst);\nif (msg.payload.gap) delete(msg.payload.gap);\nif (msg.payload.dmin) delete(msg.payload.dmin);\nif (msg.payload.magType) delete(msg.payload.magType);\nif (msg.payload.id) delete(msg.payload.id);\nif (msg.payload.updated) delete(msg.payload.updated);\nif (msg.payload.rms) delete(msg.payload.rms);\nif (msg.payload.net) delete(msg.payload.net);\nreturn [ msg ];",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 308,
+        "y": 265,
+        "wires": [
+            [
+                "66f14749.990eb8"
+            ]
+        ]
+    },
+    {
+        "id": "86781b39.7987e8",
+        "type": "csv",
+        "z": "29609aca.d69f66",
+        "name": "CSV to JSON",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "\"time\", \"latitude\", \"longitude\", \"depth\", \"mag\", \"magType\", \"nst\", \"gap\", \"dmin\", \"rms\", \"net\", \"id\", \"updated\", \"place\", \"type\" ",
+        "x": 282,
+        "y": 165,
+        "wires": [
+            [
+                "3bb724f.fc448dc"
+            ]
+        ]
+    },
+    {
+        "id": "b7537fb7f37b87a9",
+        "type": "comment",
+        "z": "29609aca.d69f66",
+        "name": "Anas Jawed 21BRS1336",
+        "info": "",
+        "x": 590,
+        "y": 140,
+        "wires": []
+    }
+]
